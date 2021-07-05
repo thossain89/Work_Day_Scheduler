@@ -32,31 +32,31 @@ var workDay = [
     },{ 
         slot: '4',
         hour: '01',
-        time: '01',
+        time: '13',
         am_pm:'pm',
         notes: ''
     },{ 
         slot: '5',
         hour: '02',
-        time: '02',
+        time: '14',
         am_pm:'pm',
         notes: ''
     },{ 
         slot: '6',
         hour: '03',
-        time: '03',
+        time: '15',
         am_pm:'pm',
         notes: ''
     },{ 
         slot: '7',
         hour: '04',
-        time: '04',
+        time: '16',
         am_pm:'pm',
         notes: ''
     },{ 
         slot: '8',
         hour: '05',
-        time: '05',
+        time: '17',
         am_pm:'pm',
         notes: ''
     },
@@ -88,6 +88,7 @@ function saveReminders (){
 // View Data saved in local storage in the slots
 
 function viewReminders (){
+
     workDay.forEach(function (currentHour){
 
         $(`#${currentHour.slot}`).val(currentHour.notes);
@@ -128,11 +129,12 @@ workDay.forEach(function(thisHour){
 
     var hourField = $("<div>")
 
-        .text(`${thisHour.hour}${thisHour.am_pm}`)
+        .text(`${thisHour.hour} ${thisHour.am_pm}`)
 
         .attr({
 
-            "class": "col-md-2 hour"
+            "class": "d-flex justify-content-center align-items-center col-md-2 hour time-block "
+            
     });
 
     // creates scheduler data
@@ -178,13 +180,14 @@ workDay.forEach(function(thisHour){
     var saveButton = $("<i class='far fa-save fa-lg'></i>")
     var savePlan = $("<button>")
         .attr({
+            
             "class": "col-md-1 saveBtn"
     });
     savePlan.append(saveButton);
     hourRow.append(hourField, hourPlan, savePlan);
 })
 
-// loads any existing localstorage data after components created
+// loads any existing local storage data after components created
 
 init();
 
@@ -199,7 +202,7 @@ $(".saveBtn").on("click", function(event) {
 
     workDay[saveIndex].notes = $(this).siblings(".description").children(".future").val();
 
-    console.log(saveIndex);
+    
 
     saveReminders();
     viewReminders();
