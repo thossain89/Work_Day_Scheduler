@@ -85,16 +85,14 @@ function saveReminders (){
 
 }
 
-// View Data saved in local storage in the slots
+// View the saved notes
 
 function viewReminders (){
-
     workDay.forEach(function (currentHour){
-
-        $(`#${currentHour.slot}`).val(currentHour.notes);
-
+        $("textarea[slot=" + currentHour.slot + "]").val(currentHour.notes);
     })
 }
+
 
 //If any data exists then to set it to view
 
@@ -112,11 +110,11 @@ function init() {
 
 
 
-// Creating the timeblock for each workDay variables inside the container.
+// Creating the time-block for each workDay variables inside the container.
 
 workDay.forEach(function(thisHour){
 
-// creates timeblocks row
+// creates time-blocks row
 
     var hourRow = $("<form>").attr({
 
@@ -198,9 +196,9 @@ $(".saveBtn").on("click", function(event) {
 
     event.preventDefault();
 
-    var saveIndex = $(this).siblings(".description").children(".future").attr("slot");
+    var saveIndex = $(this).siblings(".description").children("textarea").attr("slot");
 
-    workDay[saveIndex].notes = $(this).siblings(".description").children(".future").val();
+    workDay[saveIndex].notes = $(this).siblings(".description").children("textarea").val();
 
     
 
